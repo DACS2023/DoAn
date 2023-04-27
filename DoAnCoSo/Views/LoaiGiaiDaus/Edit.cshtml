@@ -1,0 +1,39 @@
+﻿@model DoAnCoSo.Areas.Identity.Data.LoaiGiaiDau
+
+@{
+    ViewData["Title"] = "Chỉnh Sửa Loại Giải";
+}
+
+<h1>Chỉnh Sửa</h1>
+
+<h4>Loại Giải</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdloaiGiaiDau" />
+            <div class="form-group">
+                <label asp-for="TenLoai" class="control-label"></label>
+                <input asp-for="TenLoai" class="form-control" />
+                <span asp-validation-for="TenLoai" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TrangThai" /> @Html.DisplayNameFor(model => model.TrangThai)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay Về Danh Sách Loại Giải</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

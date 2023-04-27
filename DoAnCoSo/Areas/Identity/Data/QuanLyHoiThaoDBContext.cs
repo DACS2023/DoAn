@@ -1,11 +1,12 @@
 ﻿using DoAnCoSo.Areas.Identity.Data;
+using DoAnCoSo.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DoAnCoSo.Areas.Identity.Data;
 
-public class QuanLyHoiThaoDBContext : IdentityDbContext<QuanLyHoiThaoUser>
+public class QuanLyHoiThaoDBContext : DbContext
 {
     public QuanLyHoiThaoDBContext(DbContextOptions<QuanLyHoiThaoDBContext> options)
         : base(options)
@@ -19,4 +20,10 @@ public class QuanLyHoiThaoDBContext : IdentityDbContext<QuanLyHoiThaoUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+    //public QuanLyHoiThaoDBContext : IdentityDbContext<GiaiDau>
+    //public GiaiDauDbContext(DbContextOptions<QuanLyHoiThaoDBContext> options) : base(options) { }
+    public DbSet<GiaiDau> giaiDaus { get; set; }
+    //public LoaiGiaiDauDbContext(DbContextOptions<LoaiGiaiDau> options) : base(options) { }
+    public DbSet<LoaiGiaiDau> loaiGiaiDaus { get; set; }
+    public DbSet<QuanLyHoiThaoUser> quanLyHoiThaoUsers { get; set; }
 }

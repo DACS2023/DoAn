@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DoAnCoSo.Areas.Identity.Data;
 using Microsoft.CodeAnalysis.Options;
+using DoAnCoSo.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
