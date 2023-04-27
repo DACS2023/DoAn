@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAnCoSo.Areas.Identity.Data;
+using DoAnCoSo.ViewModel;
 
 namespace DoAnCoSo.Controllers
 {
@@ -21,14 +22,15 @@ namespace DoAnCoSo.Controllers
         // GET: GiaiDaus
         public async Task<IActionResult> Index()
         {
-              return _context.giaiDaus != null ? 
+  
+            return _context.giaiDaus != null ? 
                           View(await _context.giaiDaus.ToListAsync()) :
                           Problem("Entity set 'QuanLyHoiThaoDBContext.giaiDaus'  is null.");
         }
 
         // GET: GiaiDaus/Details/5
         public async Task<IActionResult> Details(int? id)
-        {
+        {   
             if (id == null || _context.giaiDaus == null)
             {
                 return NotFound();
@@ -40,14 +42,24 @@ namespace DoAnCoSo.Controllers
             {
                 return NotFound();
             }
-
+           
             return View(giaiDau);
         }
 
         // GET: GiaiDaus/Create
         public IActionResult Create()
         {
-            return View();
+            GiaiDauCreateModel giaiDauCreateModel = new GiaiDauCreateModel();
+            giaiDauCreateModel.giaiDau = new GiaiDau();
+            List<SelectListItem> loaiGiai = _context.loaiGiaiDaus
+                .OrderBy(n=>n.TenLoai)
+                .Select(n=> new SelectListItem
+                {
+                    Value= n.IdloaiGiaiDau.ToString(),
+                    Text= n.TenLoai
+                }).ToList();
+            giaiDauCreateModel.loaigiaidau= loaiGiai;
+            return View(giaiDauCreateModel);
         }
 
         // POST: GiaiDaus/Create
@@ -59,6 +71,7 @@ namespace DoAnCoSo.Controllers
         {
             if (ModelState.IsValid)
             {
+                giaiDau.TrangThai = true;
                 _context.Add(giaiDau);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -147,7 +160,9 @@ namespace DoAnCoSo.Controllers
             var giaiDau = await _context.giaiDaus.FindAsync(id);
             if (giaiDau != null)
             {
-                _context.giaiDaus.Remove(giaiDau);
+                giaiDau.TrangThai = false;
+                _context.Update(giaiDau);
+                await _context.SaveChangesAsync();
             }
             
             await _context.SaveChangesAsync();
