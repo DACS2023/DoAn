@@ -7,6 +7,11 @@ namespace DoAnCoSo.Areas.Identity.Data;
 
 public class QuanLyHoiThaoDBContext : IdentityDbContext<QuanLyHoiThaoUser>
 {
+    public QuanLyHoiThaoDBContext()
+    {
+
+    }
+
     public QuanLyHoiThaoDBContext(DbContextOptions<QuanLyHoiThaoDBContext> options)
         : base(options)
     {

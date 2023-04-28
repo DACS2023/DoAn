@@ -71,11 +71,12 @@ namespace DoAnCoSo.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
-
+            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
@@ -103,19 +104,23 @@ namespace DoAnCoSo.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [Required]
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+            [Required]
             [DataType(DataType.Date)]
             [Display(Name = "Birthday")]
             public string Birthday { get; set; }
 
+            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Gender")]
             public string Gender { get; set; }
 
+            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Address")]
             public string Address { get; set; }

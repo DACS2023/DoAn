@@ -1,4 +1,5 @@
-﻿using DoAnCoSo.Models;
+﻿using DoAnCoSo.Areas.Identity.Data;
+using DoAnCoSo.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,8 +7,10 @@ using System.Diagnostics;
 namespace DoAnCoSo.Controllers
 {
     [Authorize]
+
     public class HomeController : Controller
     {
+        QuanLyHoiThaoDBContext HoiThao = new QuanLyHoiThaoDBContext();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -17,13 +20,11 @@ namespace DoAnCoSo.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
 
-        public IActionResult Privacy()
-        {
             return View();
         }
+        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
