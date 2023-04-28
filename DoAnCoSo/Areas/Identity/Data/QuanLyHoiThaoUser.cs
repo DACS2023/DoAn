@@ -15,11 +15,11 @@ namespace DoAnCoSo.Areas.Identity.Data;
 public class QuanLyHoiThaoUser : IdentityUser
 {
 
-    [Required]
+    
     [Column(TypeName = "nvarchar(100)")]
     public string FirstName { get; set; }
 
-    [Required]
+    
     [Column(TypeName = "nvarchar(100)")]
     public string LastName { get; set; }
 
@@ -27,11 +27,11 @@ public class QuanLyHoiThaoUser : IdentityUser
     public string gender;
     public string Gender { get => gender; set => gender = value; }
 
-    [Required]
+    
     [Column(TypeName = "Date")]
     public DateTime Birthday { get; set; }
 
-    [Required]
+    
     [Column(TypeName = "nvarchar(500)")]
     public string Address { get; set; }
 

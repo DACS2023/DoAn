@@ -1,0 +1,50 @@
+﻿@model DoAnCoSo.ViewModel.GiaiDauCreateModel
+@{
+    ViewData["Title"] = "Tạo Giải Đấu";
+}
+<h4>Giải Đấu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.giaiDau.TenGiaiDau" class="control-label"></label>
+                <input asp-for="@Model.giaiDau.TenGiaiDau" class="form-control" />
+                <span asp-validation-for="@Model.giaiDau.TenGiaiDau" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.giaiDau.IdloaiGiaiDau" class="control-label"></label>
+                <select asp-for="@Model.giaiDau.IdloaiGiaiDau" class="form-control" asp-items="@Model.loaigiaidau">
+                    <option value="">Chọn Loại Giải</option>
+                </select>    
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.giaiDau.NgayBatDau" class="control-label"></label>
+                <input asp-for="@Model.giaiDau.NgayBatDau" class="form-control" />
+                <span asp-validation-for="@Model.giaiDau.NgayBatDau" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.giaiDau.NgayKetThuc" class="control-label"></label>
+                <input asp-for="@Model.giaiDau.NgayKetThuc" class="form-control" />
+                <span asp-validation-for="@Model.giaiDau.NgayKetThuc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.giaiDau.NoiDung" class="control-label"></label>
+                <input asp-for="@Model.giaiDau.NoiDung" class="form-control" />
+                <span asp-validation-for="@Model.giaiDau.NoiDung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Tạo Giải Đấu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay Về Danh sách Giải Đấu</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

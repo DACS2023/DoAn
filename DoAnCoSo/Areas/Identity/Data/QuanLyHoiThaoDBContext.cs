@@ -24,4 +24,8 @@ public class QuanLyHoiThaoDBContext : IdentityDbContext<QuanLyHoiThaoUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+        public DbSet<GiaiDau> giaiDaus { get; set; }
+        //public LoaiGiaiDauDbContext(DbContextOptions<LoaiGiaiDau> options) : base(options) { }
+        public DbSet<LoaiGiaiDau> loaiGiaiDaus { get; set; }
+        public DbSet<QuanLyHoiThaoUser> quanLyHoiThaoUsers { get; set; }
 }

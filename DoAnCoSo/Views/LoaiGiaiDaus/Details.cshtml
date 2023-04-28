@@ -1,0 +1,30 @@
+﻿@model DoAnCoSo.Areas.Identity.Data.LoaiGiaiDau
+
+@{
+    ViewData["Title"] = "Thông Tin Loại Giải";
+}
+
+<h1>Chi Tiết Loại Giải</h1>
+
+<div>
+    <h4>Loại Giải Đấu</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TenLoai)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenLoai)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdloaiGiaiDau">Chỉnh Sửa</a> |
+    <a asp-action="Index">Danh Sách Loại Giải</a>
+</div>

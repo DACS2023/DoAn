@@ -1,0 +1,33 @@
+﻿@model DoAnCoSo.Areas.Identity.Data.LoaiGiaiDau
+
+@{
+    ViewData["Title"] = "Thêm Loại Giải";
+}
+
+<h1>Thêm Loại Giải Đấu </h1>
+
+<h4>Loại Giải Đấu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TenLoai" class="control-label"></label>
+                <input asp-for="TenLoai" class="form-control" />
+                <span asp-validation-for="TenLoai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Thêm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay Về Danh Sách Loại Giải</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

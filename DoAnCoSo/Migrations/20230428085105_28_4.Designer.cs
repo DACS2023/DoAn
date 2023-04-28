@@ -4,6 +4,7 @@ using DoAnCoSo.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnCoSo.Migrations
 {
     [DbContext(typeof(QuanLyHoiThaoDBContext))]
-    partial class QuanLyHoiThaoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230428085105_28_4")]
+    partial class _28_4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,59 +24,6 @@ namespace DoAnCoSo.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.GiaiDau", b =>
-                {
-                    b.Property<int>("IdgiaiDau")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdgiaiDau"));
-
-                    b.Property<int>("IdloaiGiaiDau")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("NgayBatDau")
-                        .HasColumnType("Date");
-
-                    b.Property<DateTime>("NgayKetThuc")
-                        .HasColumnType("Date");
-
-                    b.Property<string>("NoiDung")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(MAX)");
-
-                    b.Property<string>("TenGiaiDau")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("TrangThai")
-                        .HasColumnType("bit");
-
-                    b.HasKey("IdgiaiDau");
-
-                    b.ToTable("giaiDaus");
-                });
-
-            modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.LoaiGiaiDau", b =>
-                {
-                    b.Property<int>("IdloaiGiaiDau")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdloaiGiaiDau"));
-
-                    b.Property<string>("TenLoai")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("TrangThai")
-                        .HasColumnType("bit");
-
-                    b.HasKey("IdloaiGiaiDau");
-
-                    b.ToTable("loaiGiaiDaus");
-                });
 
             modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.QuanLyHoiThaoUser", b =>
                 {
@@ -157,21 +107,6 @@ namespace DoAnCoSo.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("GiaiDauLoaiGiaiDau", b =>
-                {
-                    b.Property<int>("GiaiDausIdgiaiDau")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ThiDausIdloaiGiaiDau")
-                        .HasColumnType("int");
-
-                    b.HasKey("GiaiDausIdgiaiDau", "ThiDausIdloaiGiaiDau");
-
-                    b.HasIndex("ThiDausIdloaiGiaiDau");
-
-                    b.ToTable("GiaiDauLoaiGiaiDau");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -309,21 +244,6 @@ namespace DoAnCoSo.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("GiaiDauLoaiGiaiDau", b =>
-                {
-                    b.HasOne("DoAnCoSo.Areas.Identity.Data.GiaiDau", null)
-                        .WithMany()
-                        .HasForeignKey("GiaiDausIdgiaiDau")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DoAnCoSo.Areas.Identity.Data.LoaiGiaiDau", null)
-                        .WithMany()
-                        .HasForeignKey("ThiDausIdloaiGiaiDau")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

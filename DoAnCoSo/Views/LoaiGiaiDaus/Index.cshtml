@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DoAnCoSo.Areas.Identity.Data.LoaiGiaiDau>
+
+@{
+    ViewData["Title"] = "Danh Sách Loại Giải";
+}
+
+<h1>Danh Sách Loại Giải</h1>
+
+<p>
+    <a asp-action="Create">Thêm Loại Giải</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdloaiGiaiDau)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenLoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.IdloaiGiaiDau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrangThai)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdloaiGiaiDau">Chỉnh Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.IdloaiGiaiDau">Thông Tin Chi Tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdloaiGiaiDau">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
