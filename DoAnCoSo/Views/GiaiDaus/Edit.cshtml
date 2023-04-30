@@ -1,46 +1,47 @@
-﻿@model DoAnCoSo.Areas.Identity.Data.GiaiDau
+﻿@model DoAnCoSo.ViewModel.GiaiDauCreateModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Chỉnh Sửa</h1>
 
-<h4>GiaiDau</h4>
+<h4>Giải Đấu</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdgiaiDau" />
+            <input type="hidden" asp-for="@Model.giaiDau.IdgiaiDau" />
             <div class="form-group">
-                <label asp-for="TenGiaiDau" class="control-label"></label>
-                <input asp-for="TenGiaiDau" class="form-control" />
-                <span asp-validation-for="TenGiaiDau" class="text-danger"></span>
+                <label asp-for="@Model.giaiDau.TenGiaiDau" class="control-label"></label>
+                <input asp-for="@Model.giaiDau.TenGiaiDau" class="form-control" />
+                <span asp-validation-for="@Model.giaiDau.TenGiaiDau" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdloaiGiaiDau" class="control-label"></label>
-                <input asp-for="IdloaiGiaiDau" class="form-control" />
-                <span asp-validation-for="IdloaiGiaiDau" class="text-danger"></span>
+                <label asp-for="@Model.giaiDau.IdloaiGiaiDau" class="control-label"></label>
+                <select asp-for="@Model.giaiDau.IdloaiGiaiDau" class="form-control" asp-items="@Model.loaiGiaiDau">
+                    <option value="">Chọn Loại Giải</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="NgayBatDau" class="control-label"></label>
-                <input asp-for="NgayBatDau" class="form-control" />
-                <span asp-validation-for="NgayBatDau" class="text-danger"></span>
+                <label asp-for="@Model.giaiDau.NgayBatDau" class="control-label"></label>
+                <input asp-for="@Model.giaiDau.NgayBatDau" class="form-control" />
+                <span asp-validation-for="@Model.giaiDau.NgayBatDau" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NgayKetThuc" class="control-label"></label>
-                <input asp-for="NgayKetThuc" class="form-control" />
-                <span asp-validation-for="NgayKetThuc" class="text-danger"></span>
+                <label asp-for="@Model.giaiDau.NgayKetThuc" class="control-label"></label>
+                <input asp-for="@Model.giaiDau.NgayKetThuc" class="form-control" />
+                <span asp-validation-for="@Model.giaiDau.NgayKetThuc" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NoiDung" class="control-label"></label>
-                <input asp-for="NoiDung" class="form-control" />
-                <span asp-validation-for="NoiDung" class="text-danger"></span>
+                <label asp-for="@Model.giaiDau.NoiDung" class="control-label"></label>
+                <input asp-for="@Model.giaiDau.NoiDung" class="form-control" />
+                <span asp-validation-for="@Model.giaiDau.NoiDung" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="TrangThai" /> @Html.DisplayNameFor(model => model.TrangThai)
+                    <input class="form-check-input" asp-for="@Model.giaiDau.TrangThai" /> @Html.DisplayNameFor(model => model.giaiDau.TrangThai)
                 </label>
             </div>
             <div class="form-group">
@@ -51,9 +52,11 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Quay Về Danh Sách Giải Đấu</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

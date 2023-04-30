@@ -1,65 +1,65 @@
-﻿@model IEnumerable<DoAnCoSo.Areas.Identity.Data.GiaiDau>
-
+﻿@model IEnumerable<DoAnCoSo.ViewModel.GiaiDauDetails>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Danh Sách Giải Đấu</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Tạo Giải Đấu</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TenGiaiDau)
+                @Html.DisplayNameFor(model => model.giaiDau.TenGiaiDau)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdloaiGiaiDau)
+                @Html.DisplayNameFor(model => model.loaiGiaiDau.TenLoai)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgayBatDau)
+                @Html.DisplayNameFor(model => model.giaiDau.NgayBatDau)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgayKetThuc)
+                @Html.DisplayNameFor(model => model.giaiDau.NgayKetThuc)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoiDung)
+                @Html.DisplayNameFor(model => model.giaiDau.NoiDung)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TrangThai)
+                @Html.DisplayNameFor(model => model.giaiDau.TrangThai)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenGiaiDau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdloaiGiaiDau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayBatDau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayKetThuc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoiDung)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrangThai)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdgiaiDau">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdgiaiDau">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdgiaiDau">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.giaiDau.TenGiaiDau)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.loaiGiaiDau.TenLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.giaiDau.NgayBatDau)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.giaiDau.NgayKetThuc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.giaiDau.NoiDung)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.giaiDau.TrangThai)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.giaiDau.IdgiaiDau">Chỉnh Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.giaiDau.IdgiaiDau">Chi Tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.giaiDau.IdgiaiDau">Xóa</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

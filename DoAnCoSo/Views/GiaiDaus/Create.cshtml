@@ -1,9 +1,8 @@
-﻿
-@model DoAnCoSo.ViewModel.GiaiDauCreateModel
+﻿@model DoAnCoSo.ViewModel.GiaiDauCreateModel
 @{
     ViewData["Title"] = "Tạo Giải Đấu";
 }
-<h4 class="text-center">TẠO GIẢI ĐẤU</h4>
+<h4>Giải Đấu</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,9 +15,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="@Model.giaiDau.IdloaiGiaiDau" class="control-label"></label>
-                <select asp-for="@Model.giaiDau.IdloaiGiaiDau" class="form-control" asp-items="@Model.loaigiaidau">
+                <select asp-for="@Model.giaiDau.IdloaiGiaiDau" class="form-control" asp-items="@Model.loaiGiaiDau">
                     <option value="">Chọn Loại Giải</option>
-                </select>    
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.giaiDau.NgayBatDau" class="control-label"></label>
@@ -47,5 +46,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

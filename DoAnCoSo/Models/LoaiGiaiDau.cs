@@ -21,6 +21,6 @@ namespace DoAnCoSo.Areas.Identity.Data
         [Column(TypeName = "bit")]
         public bool TrangThai { get; set; }
 
-        public virtual ICollection<GiaiDau> GiaiDaus { get; set; } = new List<GiaiDau>();
+        
     }
 }

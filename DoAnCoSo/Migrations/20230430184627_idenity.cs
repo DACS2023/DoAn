@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DoAnCoSo.Migrations
 {
     /// <inheritdoc />
-    public partial class _29_04_Tuan : Migration
+    public partial class idenity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,20 +27,6 @@ namespace DoAnCoSo.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_giaiDaus", x => x.IdgiaiDau);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "loaiGiaiDaus",
-                columns: table => new
-                {
-                    IdloaiGiaiDau = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TenLoai = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    TrangThai = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_loaiGiaiDaus", x => x.IdloaiGiaiDau);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,27 +74,23 @@ namespace DoAnCoSo.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GiaiDauLoaiGiaiDau",
+                name: "loaiGiaiDaus",
                 columns: table => new
                 {
-                    GiaiDausIdgiaiDau = table.Column<int>(type: "int", nullable: false),
-                    ThiDausIdloaiGiaiDau = table.Column<int>(type: "int", nullable: false)
+                    IdloaiGiaiDau = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TenLoai = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    TrangThai = table.Column<bool>(type: "bit", nullable: false),
+                    GiaiDauIdgiaiDau = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GiaiDauLoaiGiaiDau", x => new { x.GiaiDausIdgiaiDau, x.ThiDausIdloaiGiaiDau });
+                    table.PrimaryKey("PK_loaiGiaiDaus", x => x.IdloaiGiaiDau);
                     table.ForeignKey(
-                        name: "FK_GiaiDauLoaiGiaiDau_giaiDaus_GiaiDausIdgiaiDau",
-                        column: x => x.GiaiDausIdgiaiDau,
+                        name: "FK_loaiGiaiDaus_giaiDaus_GiaiDauIdgiaiDau",
+                        column: x => x.GiaiDauIdgiaiDau,
                         principalTable: "giaiDaus",
-                        principalColumn: "IdgiaiDau",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GiaiDauLoaiGiaiDau_loaiGiaiDaus_ThiDausIdloaiGiaiDau",
-                        column: x => x.ThiDausIdloaiGiaiDau,
-                        principalTable: "loaiGiaiDaus",
-                        principalColumn: "IdloaiGiaiDau",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdgiaiDau");
                 });
 
             migrationBuilder.CreateTable(
@@ -218,9 +200,9 @@ namespace DoAnCoSo.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_GiaiDauLoaiGiaiDau_ThiDausIdloaiGiaiDau",
-                table: "GiaiDauLoaiGiaiDau",
-                column: "ThiDausIdloaiGiaiDau");
+                name: "IX_loaiGiaiDaus_GiaiDauIdgiaiDau",
+                table: "loaiGiaiDaus",
+                column: "GiaiDauIdgiaiDau");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -266,7 +248,7 @@ namespace DoAnCoSo.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GiaiDauLoaiGiaiDau");
+                name: "loaiGiaiDaus");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims");
@@ -285,9 +267,6 @@ namespace DoAnCoSo.Migrations
 
             migrationBuilder.DropTable(
                 name: "giaiDaus");
-
-            migrationBuilder.DropTable(
-                name: "loaiGiaiDaus");
 
             migrationBuilder.DropTable(
                 name: "Roles");
