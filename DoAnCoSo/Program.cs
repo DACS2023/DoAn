@@ -1,7 +1,9 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DoAnCoSo.Areas.Identity.Data;
 using Microsoft.CodeAnalysis.Options;
+using DoAnCoSo.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +17,32 @@ builder.Services.AddDefaultIdentity<QuanLyHoiThaoUser>(options => options.SignIn
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-builder.Services.Configure<IdentityOptions>(optinons =>
+builder.Services.Configure<IdentityOptions>(optinos =>
 {
-    optinons.Password.RequireUppercase = false;
+    // Thiết lập về Password
+    optinos.Password.RequireDigit = false; //   phải có số
+    optinos.Password.RequireLowercase = false; //   phải có chữ thường
+    optinos.Password.RequireNonAlphanumeric = false; //   ký tự đặc biệt
+    optinos.Password.RequireUppercase = false; //  chữ in
+    optinos.Password.RequiredLength = 6; // Số ký tự tối thiểu của password
+    optinos.Password.RequiredUniqueChars = 0; // Số ký tự riêng biệt
+
+    // Cấu hình Lockout - khóa user
+    optinos.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // Khóa 5 phút
+    optinos.Lockout.MaxFailedAccessAttempts = 5; // Thất bại 5 lầ thì khóa
+    optinos.Lockout.AllowedForNewUsers = true;
+
+    // Cấu hình về User.
+    optinos.User.AllowedUserNameCharacters = // các ký tự đặt tên user
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    optinos.User.RequireUniqueEmail = true;  // Email là duy nhất
+        
+    // Cấu hình đăng nhập.
+    optinos.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
+    optinos.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
+
 });
+
 
 var app = builder.Build();
 
@@ -31,10 +55,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
