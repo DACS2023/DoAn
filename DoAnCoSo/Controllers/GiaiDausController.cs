@@ -22,10 +22,32 @@ namespace DoAnCoSo.Controllers
         // GET: GiaiDaus
         public async Task<IActionResult> Index()
         {
+            List<GiaiDauDetails> giaiDaudetailsList = new List<GiaiDauDetails>();
+            
+            GiaiDauDetails giaiDauDetails; 
+            List<GiaiDau> giaiDauList = await _context.giaiDaus.ToListAsync();
 
+            for(int i = 0; i < giaiDauList.Count;i++)
+            {
+                giaiDauDetails = new GiaiDauDetails();
+                giaiDauDetails.giaiDau = new GiaiDau();
+                giaiDauDetails.loaiGiaiDau = new LoaiGiaiDau();
+                
+
+                giaiDauDetails.giaiDau = await _context.giaiDaus.FirstOrDefaultAsync(m => m.IdgiaiDau == giaiDauList[i].IdgiaiDau);
+
+                giaiDauDetails.loaiGiaiDau = await _context.loaiGiaiDaus.FirstOrDefaultAsync(m => m.IdloaiGiaiDau == giaiDauDetails.giaiDau.IdloaiGiaiDau);
+
+                giaiDaudetailsList.Add(giaiDauDetails);
+            }    
+            
             return _context.giaiDaus != null ?
-                          View(await _context.giaiDaus.ToListAsync()) :
+                          View(giaiDaudetailsList) :
                           Problem("Entity set 'QuanLyHoiThaoDBContext.giaiDaus'  is null.");
+
+            //return _context.giaiDaus != null ?
+            //             View(await _context.giaiDaus.ToListAsync()) :
+            //             Problem("Entity set 'QuanLyHoiThaoDBContext.giaiDaus'  is null.");
         }
 
         // GET: GiaiDaus/Details/5
@@ -36,14 +58,22 @@ namespace DoAnCoSo.Controllers
                 return NotFound();
             }
 
-            var giaiDau = await _context.giaiDaus
-                .FirstOrDefaultAsync(m => m.IdgiaiDau == id);
-            if (giaiDau == null)
+
+            GiaiDauDetails giaiDauDetails = new GiaiDauDetails();
+
+            giaiDauDetails.giaiDau = await _context.giaiDaus.FirstOrDefaultAsync(m => m.IdgiaiDau == id);
+
+            giaiDauDetails.loaiGiaiDau = await _context.loaiGiaiDaus.FirstOrDefaultAsync(m => m.IdloaiGiaiDau == giaiDauDetails.giaiDau.IdloaiGiaiDau);
+
+            //var giaiDau = await _context.giaiDaus
+            //   .FirstOrDefaultAsync(m => m.IdgiaiDau == id);
+            if (giaiDauDetails == null)
             {
                 return NotFound();
             }
 
-            return View(giaiDau);
+
+            return View(giaiDauDetails);
         }
 
         // GET: GiaiDaus/Create
@@ -53,12 +83,13 @@ namespace DoAnCoSo.Controllers
             giaiDauCreateModel.giaiDau = new GiaiDau();
             List<SelectListItem> loaiGiai = _context.loaiGiaiDaus
                 .OrderBy(n => n.TenLoai)
+                .Where(n=>n.TrangThai==true)
                 .Select(n => new SelectListItem
                 {
                     Value = n.IdloaiGiaiDau.ToString(),
                     Text = n.TenLoai
                 }).ToList();
-            giaiDauCreateModel.loaigiaidau = loaiGiai;
+            giaiDauCreateModel.loaiGiaiDau = loaiGiai;
             return View(giaiDauCreateModel);
         }
 
@@ -85,12 +116,31 @@ namespace DoAnCoSo.Controllers
                 return NotFound();
             }
 
-            var giaiDau = await _context.giaiDaus.FindAsync(id);
-            if (giaiDau == null)
+
+            GiaiDauCreateModel giaiDauCreateModel = new GiaiDauCreateModel();
+
+            giaiDauCreateModel.giaiDau = await _context.giaiDaus.FirstOrDefaultAsync(m => m.IdgiaiDau == id);
+
+            //giaiDauCreateModel.loaiGiaiDau = (IEnumerable<SelectListItem>)await _context.loaiGiaiDaus.FirstOrDefaultAsync(m => m.IdloaiGiaiDau == giaiDauCreateModel.giaiDau.IdloaiGiaiDau); 
+                
+
+            List<SelectListItem> loaiGiai = _context.loaiGiaiDaus
+                .OrderBy(n => n.TenLoai)
+                .Where(n=>n.TrangThai==true)
+                .Select(n => new SelectListItem
+                {
+                    Value = n.IdloaiGiaiDau.ToString(),
+                    Text = n.TenLoai
+                }).ToList();
+            
+            giaiDauCreateModel.loaiGiaiDau = loaiGiai;
+            if (giaiDauCreateModel == null)
             {
                 return NotFound();
             }
-            return View(giaiDau);
+
+
+            return View(giaiDauCreateModel);
         }
 
        
@@ -134,14 +184,18 @@ namespace DoAnCoSo.Controllers
                 return NotFound();
             }
 
-            var giaiDau = await _context.giaiDaus
-                .FirstOrDefaultAsync(m => m.IdgiaiDau == id);
-            if (giaiDau == null)
+            GiaiDauDetails giaiDauDetails = new GiaiDauDetails();
+
+            giaiDauDetails.giaiDau = await _context.giaiDaus.FirstOrDefaultAsync(m => m.IdgiaiDau == id);
+
+            giaiDauDetails.loaiGiaiDau = await _context.loaiGiaiDaus.FirstOrDefaultAsync(m => m.IdloaiGiaiDau == giaiDauDetails.giaiDau.IdloaiGiaiDau);
+
+            if (giaiDauDetails == null)
             {
                 return NotFound();
             }
 
-            return View(giaiDau);
+            return View(giaiDauDetails);
         }
 
         // POST: GiaiDaus/Delete/5

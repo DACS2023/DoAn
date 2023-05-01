@@ -6,7 +6,7 @@ namespace DoAnCoSo.ViewModel
     public class GiaiDauCreateModel
     {
         public GiaiDau giaiDau { get; set; }
-        public IEnumerable<SelectListItem> loaigiaidau { get; set; }
+        public IEnumerable<SelectListItem> loaiGiaiDau { get; set; }
 
     }
 }

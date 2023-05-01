@@ -6,6 +6,6 @@ namespace DoAnCoSo.ViewModel
     public class GiaiDauDetails
     {
         public GiaiDau giaiDau { get; set; }
-        public LoaiGiaiDau loaigiaidau { get; set; }
+        public LoaiGiaiDau loaiGiaiDau { get; set; }
     }
 }
