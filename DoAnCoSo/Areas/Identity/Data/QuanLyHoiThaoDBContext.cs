@@ -36,4 +36,5 @@ public class QuanLyHoiThaoDBContext : IdentityDbContext<QuanLyHoiThaoUser>
         //public LoaiGiaiDauDbContext(DbContextOptions<LoaiGiaiDau> options) : base(options) { }
         public DbSet<LoaiGiaiDau> loaiGiaiDaus { get; set; }
         public DbSet<QuanLyHoiThaoUser> quanLyHoiThaoUsers { get; set; }
+    public object Session { get; internal set; }
 }

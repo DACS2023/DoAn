@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DoAnCoSo.Areas.Identity.Data;
 using Microsoft.CodeAnalysis.Options;
 using DoAnCoSo.Models;
 using Microsoft.Extensions.DependencyInjection;
+using DoAnCoSo.Areas.Admin.Pages.Role;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +14,12 @@ var connectionString = builder.Configuration.GetConnectionString("QuanLyHoiThaoD
 
 builder.Services.AddDbContext<QuanLyHoiThaoDBContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<QuanLyHoiThaoUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<QuanLyHoiThaoDBContext>();
+//builder.Services.AddDefaultIdentity<QuanLyHoiThaoUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<QuanLyHoiThaoDBContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//builder.Services.AddScoped<RoleShowModel>();
 builder.Services.AddRazorPages();
 
 builder.Services.Configure<IdentityOptions>(optinos =>
@@ -36,13 +41,39 @@ builder.Services.Configure<IdentityOptions>(optinos =>
     optinos.User.AllowedUserNameCharacters = // các ký tự đặt tên user
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     optinos.User.RequireUniqueEmail = true;  // Email là duy nhất
-        
+
     // Cấu hình đăng nhập.
     optinos.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
     optinos.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
-
 });
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.Name = "QuanLyHoiThaoDBContext";
+});
+
+builder.Services.AddIdentity<QuanLyHoiThaoUser, IdentityRole>(options =>
+{
+    // Configure password requirements, lockout settings, etc.
+})
+.AddEntityFrameworkStores<QuanLyHoiThaoDBContext>()
+.AddDefaultTokenProviders()
+.AddRoleManager<RoleManager<IdentityRole>>()
+.AddDefaultUI()
+.AddDefaultTokenProviders();
+
+builder.Services.AddScoped<UserManager<QuanLyHoiThaoUser>>();
+builder.Services.AddScoped<SignInManager<QuanLyHoiThaoUser>>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Configure password, lockout, user, and sign-in options.
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.Name = "QuanLyHoiThaoDBContext";
+});
 
 var app = builder.Build();
 

@@ -62,9 +62,7 @@ namespace DoAnCoSo.Controllers
             return View(giaiDauCreateModel);
         }
 
-        // POST: GiaiDaus/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdgiaiDau,TenGiaiDau,IdloaiGiaiDau,NgayBatDau,NgayKetThuc,NoiDung,TrangThai")] GiaiDau giaiDau)
@@ -95,9 +93,7 @@ namespace DoAnCoSo.Controllers
             return View(giaiDau);
         }
 
-        // POST: GiaiDaus/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdgiaiDau,TenGiaiDau,IdloaiGiaiDau,NgayBatDau,NgayKetThuc,NoiDung,TrangThai")] GiaiDau giaiDau)

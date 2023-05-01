@@ -4,6 +4,7 @@ using DoAnCoSo.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnCoSo.Migrations
 {
     [DbContext(typeof(QuanLyHoiThaoDBContext))]
-    partial class QuanLyHoiThaoDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230501170756_02_05_23_Tuan")]
+    partial class _02_05_23_Tuan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
