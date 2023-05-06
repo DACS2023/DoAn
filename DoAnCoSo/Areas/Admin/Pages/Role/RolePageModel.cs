@@ -1,31 +1,23 @@
-﻿using DoAnCoSo.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
-using DoAnCoSo.Models;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using DoAnCoSo.Models;
+using DoAnCoSo.Areas.Identity.Data;
+//using DoAnCoSo.Areas.Areas.Identity.Data;
 
 namespace DoAnCoSo.Areas.Admin.Pages.Role
 {
     public class RolePageModel : PageModel
     {
         protected readonly RoleManager<IdentityRole> _roleManager;
-
         protected readonly QuanLyHoiThaoDBContext _context;
 
         [TempData]
-        public string StatusMessage { get; set; } = "";
-        public QuanLyHoiThaoDBContext QuanLyHoiThaoDBContext { get; }
-
-        public RolePageModel(RoleManager<IdentityRole> roleManager, QuanLyHoiThaoDBContext quanLyHoiThaoDBContext)
+        public string StatusMessage { get; set; }
+        public RolePageModel(RoleManager<IdentityRole> roleManager, QuanLyHoiThaoDBContext myBlogContext)
         {
             _roleManager = roleManager;
-            _context = quanLyHoiThaoDBContext;
+            _context = myBlogContext;
         }
-
-        public RolePageModel(QuanLyHoiThaoDBContext quanLyHoiThaoDBContext)
-        {
-            QuanLyHoiThaoDBContext = quanLyHoiThaoDBContext;
-        }
-        public IActionResult OnPost() => NotFound("Không thấy");
     }
 }

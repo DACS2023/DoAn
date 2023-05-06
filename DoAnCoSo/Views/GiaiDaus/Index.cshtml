@@ -3,10 +3,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Danh Sách Giải Đấu</h1>
+<h2 style="text-align: center; font-weight: bold;">Danh Sách Giải Đấu</h2>
 
 <p>
-    <a asp-action="Create">Tạo Giải Đấu</a>
+    <a class="btn btn-success btn-sm" asp-action="Create">Tạo Giải Đấu</a>
 </p>
 <table class="table">
     <thead>
@@ -55,9 +55,10 @@
                     @Html.DisplayFor(modelItem => item.giaiDau.TrangThai)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.giaiDau.IdgiaiDau">Chỉnh Sửa</a> |
-                    <a asp-action="Details" asp-route-id="@item.giaiDau.IdgiaiDau">Chi Tiết</a> |
-                    <a asp-action="Delete" asp-route-id="@item.giaiDau.IdgiaiDau">Xóa</a>
+                    <a class="btn btn-success btn-sm" asp-action="Edit" asp-route-id="@item.giaiDau.IdgiaiDau">Chỉnh Sửa</a>
+                    <a class="btn btn-success btn-sm" asp-action="Details" asp-route-id="@item.giaiDau.IdgiaiDau">Chi Tiết</a>
+                    <a class="btn btn-success btn-sm" asp-action="Delete" asp-route-id="@item.giaiDau.IdgiaiDau">Xóa</a>
+                    
                 </td>
             </tr>
         }

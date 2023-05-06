@@ -19,9 +19,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    font-family: 'Merriweather', serif;
-    font-family: 'Roboto', sans-serif;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Times New Roman'
 }
 
 /*tab navigation*/
@@ -53,3 +51,9 @@ body {
     
     padding: 10px 20px;
 }
+
+
+.form-check-input:checked .form-check-label {
+    color: blue;
+}
+

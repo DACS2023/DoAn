@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DoAnCoSo.styles.css" asp-append-version="true" />
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto+Slab&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Quản Lý Hội Thao</a>
+                <a class="navbar-brand" asp-area="" asp-controller="GiaiDaus" asp-action="Index">Quản Lý Hội Thao</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,33 +21,11 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial.cshtml" />
 
-
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="GiaiDaus" asp-action="Index">Home</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="GiaiDaus" asp-action="Create">Tạo Giải Đấu</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="LoaiGiaiDaus" asp-action="Index">Loại Giải Đấu</a>
-                        </li>
-
-                        
-                        @*<li class="nav-item">
-                            <form id="loginForm" class="form-inline" asp-area="Admin" asp-page="/Role/Index" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "/admin/roles" })">
-                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Role</button>
-                            </form>
-                        </li>*@
-
-                        <li class="nav-item">
-                            <form asp-area="Admin" asp-page="/Role/Index">
-                                <button class="nav-link btn btn-link text-dark border-0">Role</button>
-                            </form>
-                        </li>
-                        
                     </ul>
                 </div>
             </div>

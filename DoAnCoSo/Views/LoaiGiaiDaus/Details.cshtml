@@ -4,10 +4,10 @@
     ViewData["Title"] = "Thông Tin Loại Giải";
 }
 
-<h1>Chi Tiết Loại Giải</h1>
+<h1 style="text-align: center; font-weight: bold;">Chi Tiết Loại Giải</h1>
 
 <div>
-    <h4>Loại Giải Đấu</h4>
+    <h4 style=" font-weight: bold;">Loại Giải Đấu</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -24,7 +24,9 @@
         </dd>
     </dl>
 </div>
+<br />
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdloaiGiaiDau">Chỉnh Sửa</a> |
-    <a asp-action="Index">Danh Sách Loại Giải</a>
+    <a class="btn btn-success btn-sm" asp-action="Edit" asp-route-id="@Model?.IdloaiGiaiDau">Chỉnh Sửa</a>
+    <br /><br />
+    <a class="btn btn-success btn-sm" asp-action="Index">Danh Sách Loại Giải</a>
 </div>

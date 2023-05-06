@@ -4,7 +4,7 @@
     ViewData["Title"] = "Danh Sách Loại Giải";
 }
 
-<h1>Danh Sách Loại Giải</h1>
+<h2 style ="text-align: center; font-weight: bold;">Danh Sách Loại Giải</h2>
 
 <p>
     <a asp-action="Create">Thêm Loại Giải</a>
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.TrangThai)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdloaiGiaiDau">Chỉnh Sửa</a> |
-                <a asp-action="Details" asp-route-id="@item.IdloaiGiaiDau">Thông Tin Chi Tiết</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdloaiGiaiDau">Xóa</a>
+                <a class="btn btn-success btn-sm" asp-action="Edit" asp-route-id="@item.IdloaiGiaiDau">Chỉnh Sửa</a> 
+                <a class="btn btn-success btn-sm" asp-action="Details" asp-route-id="@item.IdloaiGiaiDau">Thông Tin Chi Tiết</a> 
+                <a class="btn btn-success btn-sm" asp-action="Delete" asp-route-id="@item.IdloaiGiaiDau">Xóa</a>
             </td>
         </tr>
 }

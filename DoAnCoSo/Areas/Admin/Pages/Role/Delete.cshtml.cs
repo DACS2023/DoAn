@@ -1,69 +1,63 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
+using DoAnCoSo.Models;
+using DoAnCoSo.Areas.Identity.Data;
+//using DoAnCoSo.Areas.Areas.Identity.Data;
 
 namespace DoAnCoSo.Areas.Admin.Pages.Role
 {
-    public class DeleteModel : PageModel
+    //[Authorize(Roles = "Admin")]
+    public class DeleteModel : RolePageModel
     {
-        private readonly RoleManager<IdentityRole> _roleManager;
-
-        public DeleteModel(RoleManager<IdentityRole> roleManager)
+        public DeleteModel(RoleManager<IdentityRole> roleManager, QuanLyHoiThaoDBContext quanLyHoiThaoDBContext) : base(roleManager, quanLyHoiThaoDBContext)
         {
-            _roleManager = roleManager;
-        }
-
-        public class InputModel
-        {
-           [Required]
-            public string ID { set; get; }
-            public string Name { set; get; }
 
         }
 
-        [BindProperty]
-        public InputModel Input { set; get; }
 
-        [BindProperty]
-        public bool isConfirmed { set; get; }
+        public IdentityRole role { get; set; }
 
-        [TempData] // Sử dụng Session
-        public string StatusMessage { get; set; }
-
-        public IActionResult OnGet() => NotFound("Không thấy");
-
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnGet(string roleid)
         {
+            if (roleid == null) return NotFound("Không tìm thấy role");
 
-            if (!ModelState.IsValid)
-            {
-                return NotFound("Không xóa được");
-            }
-
-            var role = await _roleManager.FindByIdAsync(Input.ID);
+            role = await _roleManager.FindByIdAsync(roleid);
             if (role == null)
             {
-                return NotFound("Không thấy role cần xóa");
+                return NotFound("Không tìm thấy role");
             }
+            return Page();
+        }
 
-            ModelState.Clear();
 
-            if (isConfirmed)
+
+        public async Task<IActionResult> OnPostAsync(string roleid)
+        {
+            if (roleid == null) return NotFound("Không tìm thấy role");
+            role = await _roleManager.FindByIdAsync(roleid);
+            if (role == null) return NotFound("Không tìm thấy role");
+
+
+            var result = await _roleManager.DeleteAsync(role);
+
+            if (result.Succeeded)
             {
-                //Xóa
-                await _roleManager.DeleteAsync(role);
-                StatusMessage = "Đã xóa " + role.Name;
-
-                return RedirectToPage("Index");
+                StatusMessage = $"Bạn vừa xóa: {role.Name}";
+                return RedirectToPage("./Index");
             }
             else
             {
-                Input.Name = role.Name;
-                isConfirmed = true;
-
+                result.Errors.ToList().ForEach(error => {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                });
             }
-
             return Page();
         }
     }

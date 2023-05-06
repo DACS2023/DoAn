@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Chỉnh Sửa</h1>
+<h1 style="text-align: center; font-weight: bold;">Chỉnh Sửa</h1>
 
-<h4>Giải Đấu</h4>
+<h4 style=" font-weight: bold;">Giải Đấu</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -44,15 +44,16 @@
                     <input class="form-check-input" asp-for="@Model.giaiDau.TrangThai" /> @Html.DisplayNameFor(model => model.giaiDau.TrangThai)
                 </label>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br />
 <div>
-    <a asp-action="Index">Quay Về Danh Sách Giải Đấu</a>
+    <a class="btn btn-success btn-sm" asp-action="Index">Quay Về Danh Sách Giải Đấu</a>
 </div>
 
 @section Scripts {

@@ -4,9 +4,9 @@
     ViewData["Title"] = "Xóa Giải Đấu";
 }
 
-<h1>Xóa Giải Đấu</h1>
+<h1 style="text-align: center; font-weight: bold;">Xóa Giải Đấu</h1>
 
-<h3>Bạn Có Chắc Muốn Xóa Giải Đấu Này?</h3>
+<h3 style=" font-weight: bold;">Bạn Có Chắc Muốn Xóa Giải Đấu Này?</h3>
 <div>
     <h4>Giải Đấu</h4>
     <hr />
@@ -51,7 +51,8 @@
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="giaiDau.IdgiaiDau" />
-        <input type="submit" value="Xóa" class="btn btn-danger" /> |
-        <a asp-action="Index">Quay Về Danh Sách Giải Đấu</a>
+        <input type="submit" value="Xóa" class="btn btn-danger" />
+        <br /><br />
+        <a class="btn btn-success btn-sm" asp-action="Index">Quay Về Danh Sách Giải Đấu</a>
     </form>
 </div>
