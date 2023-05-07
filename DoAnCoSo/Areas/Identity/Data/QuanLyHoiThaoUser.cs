@@ -23,7 +23,9 @@ public class QuanLyHoiThaoUser : IdentityUser
     [Column(TypeName = "nvarchar(100)")]
     public string LastName { get; set; }
 
-    
+    [Column(TypeName = "nvarchar(100)")]
+    public string User { get; set; }
+
     public string gender;
     public string Gender { get => gender; set => gender = value; }
 

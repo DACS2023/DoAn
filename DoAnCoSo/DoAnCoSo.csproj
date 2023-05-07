@@ -18,13 +18,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.6" />
+    <PackageReference Include="Polly" Version="7.2.3" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.104" />
+    <PackageReference Include="WebGrease" Version="1.6.0" />
     <PackageReference Include="xunit.extensibility.core" Version="2.4.2" />
     <PackageReference Include="xunit.extensibility.execution" Version="2.4.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Pages\User\" />
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="Models\" />

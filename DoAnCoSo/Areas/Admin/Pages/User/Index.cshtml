@@ -1,0 +1,39 @@
+﻿@page "/admin/members"
+@model DoAnCoSo.Areas.Admin.Pages.User.IndexModel
+@{
+    ViewData["Title"] = "Danh sách các thành viên";
+}
+<h2 style="text-align: center; font-weight: bold;">@ViewData["Title"]</h2>
+
+<partial name="_StatusMessage" model="@Model.StatusMessage"></partial>
+
+
+<table class="table">
+    <tr>
+        <th>Tên User</th>
+        <th>Vai trò (role)</th>
+        <th>Tác vụ</th>
+    </tr>
+    @foreach (var user in Model.users)
+    {
+        <tr>
+            <td>
+                <p>@user.User</p>
+                @*@foreach (var claim in @user.Claims)
+                {
+                    <small>@claim</small>
+
+                    <br>
+                }*@
+            </td>
+            <td>
+            
+            </td>
+            <td>
+                <a class="btn btn-success btn-sm" asp-page="./SetPassword" asp-route-id="@user.Id">Đặt lại mật khẩu</a>
+                <a class="btn btn-success btn-sm" asp-page="./AddRole" asp-route-id="@user.Id">Cập nhật</a>
+                
+            </td>
+        </tr>
+    }
+</table>
