@@ -39,5 +39,8 @@ namespace DoAnCoSo.Areas.Identity.Data
         public bool TrangThai { get; set; }
 
         public virtual ICollection<LoaiGiaiDau> ThiDaus { get; set; } = new List<LoaiGiaiDau>();
+
+        public virtual ICollection<Doi>? DanhSachDoi { get; set; }
+        public virtual ICollection<LichThiDau>? DanhSachLichThiDau { get; set; }
     }
 }

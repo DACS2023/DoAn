@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DoAnCoSo.Areas.Identity.Data;
 using Microsoft.CodeAnalysis.Options;
-using DoAnCoSo.Models;
+//using DoAnCoSo.Models;
 using Microsoft.Extensions.DependencyInjection;
 using DoAnCoSo.Areas.Admin.Pages.Role;
 

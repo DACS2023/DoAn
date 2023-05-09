@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DoAnCoSo.Models;
+//using DoAnCoSo.Models;
 using DoAnCoSo.Areas.Identity.Data;
 //using DoAnCoSo.Areas.Areas.Identity.Data;
 

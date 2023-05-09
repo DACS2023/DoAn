@@ -6,7 +6,7 @@ namespace DoAnCoSo.Models
     {
         public AppUser() 
         {
-
+            return ;
         }
     }
 }

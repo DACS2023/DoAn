@@ -1,4 +1,5 @@
-﻿using DoAnCoSo.Models;
+﻿using DoAnCoSo.Areas.Identity.Data;
+using DoAnCoSo.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
