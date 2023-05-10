@@ -37,5 +37,9 @@ public class QuanLyHoiThaoDBContext : IdentityDbContext<QuanLyHoiThaoUser>
         public DbSet<LoaiGiaiDau> loaiGiaiDaus { get; set; }
         public DbSet<QuanLyHoiThaoUser> quanLyHoiThaoUsers { get; set; }
         public DbSet<ThiSinh> ThiSinhs { get; set; }
+
+    public DbSet<LichThiDau> lichThiDaus { get; set; }
+    public DbSet<Doi> dois { get; set; }
+
     public object Session { get; internal set; }
 }

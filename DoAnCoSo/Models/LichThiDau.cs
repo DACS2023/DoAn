@@ -33,8 +33,8 @@ namespace DoAnCoSo.Areas.Identity.Data
         [Column(TypeName = "varchar(50)")]
         public String? Tiso { get; set; }
 
-        public virtual Doi Doi1 { get; set; }
+        public virtual ICollection<Doi> Doi1 { get; set; }
 
-        public virtual Doi Doi2 { get; set; }
+        public virtual ICollection<Doi> Doi2 { get; set; }
     }
 }

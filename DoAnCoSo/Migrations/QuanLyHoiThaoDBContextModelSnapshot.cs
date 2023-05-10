@@ -22,6 +22,49 @@ namespace DoAnCoSo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.Doi", b =>
+                {
+                    b.Property<int>("IdDoi")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDoi"));
+
+                    b.Property<string>("Donvi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("GiaiDauIdgiaiDau")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("LichThiDauIdTranDau")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LichThiDauIdTranDau1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Logo")
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("TenDoi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("IdDoi");
+
+                    b.HasIndex("GiaiDauIdgiaiDau");
+
+                    b.HasIndex("LichThiDauIdTranDau");
+
+                    b.HasIndex("LichThiDauIdTranDau1");
+
+                    b.ToTable("dois");
+                });
+
             modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.GiaiDau", b =>
                 {
                     b.Property<int>("IdgiaiDau")
@@ -53,6 +96,39 @@ namespace DoAnCoSo.Migrations
                     b.HasKey("IdgiaiDau");
 
                     b.ToTable("giaiDaus");
+                });
+
+            modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.LichThiDau", b =>
+                {
+                    b.Property<int>("IdTranDau")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTranDau"));
+
+                    b.Property<int?>("GiaiDauIdgiaiDau")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdDoi1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdDoi2")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Thoigianbatdau")
+                        .HasColumnType("Datetime");
+
+                    b.Property<string>("Tiso")
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<bool>("Trangthai")
+                        .HasColumnType("bit");
+
+                    b.HasKey("IdTranDau");
+
+                    b.HasIndex("GiaiDauIdgiaiDau");
+
+                    b.ToTable("lichThiDaus");
                 });
 
             modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.LoaiGiaiDau", b =>
@@ -97,6 +173,10 @@ namespace DoAnCoSo.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -166,6 +246,10 @@ namespace DoAnCoSo.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("Users", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("QuanLyHoiThaoUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -301,6 +385,44 @@ namespace DoAnCoSo.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.ThiSinh", b =>
+                {
+                    b.HasBaseType("DoAnCoSo.Areas.Identity.Data.QuanLyHoiThaoUser");
+
+                    b.Property<string>("BomonThiDau")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("IdDoi")
+                        .HasColumnType("int");
+
+                    b.HasIndex("IdDoi");
+
+                    b.HasDiscriminator().HasValue("ThiSinh");
+                });
+
+            modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.Doi", b =>
+                {
+                    b.HasOne("DoAnCoSo.Areas.Identity.Data.GiaiDau", null)
+                        .WithMany("DanhSachDoi")
+                        .HasForeignKey("GiaiDauIdgiaiDau");
+
+                    b.HasOne("DoAnCoSo.Areas.Identity.Data.LichThiDau", null)
+                        .WithMany("Doi1")
+                        .HasForeignKey("LichThiDauIdTranDau");
+
+                    b.HasOne("DoAnCoSo.Areas.Identity.Data.LichThiDau", null)
+                        .WithMany("Doi2")
+                        .HasForeignKey("LichThiDauIdTranDau1");
+                });
+
+            modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.LichThiDau", b =>
+                {
+                    b.HasOne("DoAnCoSo.Areas.Identity.Data.GiaiDau", null)
+                        .WithMany("DanhSachLichThiDau")
+                        .HasForeignKey("GiaiDauIdgiaiDau");
+                });
+
             modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.LoaiGiaiDau", b =>
                 {
                     b.HasOne("DoAnCoSo.Areas.Identity.Data.GiaiDau", null)
@@ -359,9 +481,31 @@ namespace DoAnCoSo.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.ThiSinh", b =>
+                {
+                    b.HasOne("DoAnCoSo.Areas.Identity.Data.Doi", "Doi")
+                        .WithMany()
+                        .HasForeignKey("IdDoi")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doi");
+                });
+
             modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.GiaiDau", b =>
                 {
+                    b.Navigation("DanhSachDoi");
+
+                    b.Navigation("DanhSachLichThiDau");
+
                     b.Navigation("ThiDaus");
+                });
+
+            modelBuilder.Entity("DoAnCoSo.Areas.Identity.Data.LichThiDau", b =>
+                {
+                    b.Navigation("Doi1");
+
+                    b.Navigation("Doi2");
                 });
 #pragma warning restore 612, 618
         }

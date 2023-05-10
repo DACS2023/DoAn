@@ -6,7 +6,7 @@ using DoAnCoSo.Areas.Identity.Data;
 
 namespace DoAnCoSo.Areas.Identity.Data
 {
-    public class Doi : QuanLyHoiThaoUser
+    public class Doi 
     {
         [Key]
         [DisplayName("Id Đội")]
